@@ -3,6 +3,16 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <string.h>
+void is_num(char c){
+	if( c >= '1' && c <= '9'){ return true;}
+	else {return false;}
+}
+void is_string_num(string s){
+	for (int i = 0;i < strlen(str); i++){
+		if(!is_num(s[i])){return false;}
+	}
+	return true;
+}
 void traverse_directory(const char *path) {
     DIR *dir;
     struct dirent *entry;
@@ -30,9 +40,9 @@ void traverse_directory(const char *path) {
 
         else {
 	    if(S_ISDIR(st.st_mode)){
+		if(is_string_num(entry->d_name)){
 		printf("目录: %s\n", fullpath);
-	    }else{
-		printf("文件: %s\n", fullpath);
+		}
 	    }
         }
     }
