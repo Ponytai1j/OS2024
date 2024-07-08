@@ -28,7 +28,7 @@ void traverse_directory(const char *path) {
             continue;
         }
 
-        } else {
+        else {
             printf("文件: %s\n", fullpath);
         }
     }
