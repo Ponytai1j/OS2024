@@ -43,6 +43,6 @@ int main(int argc, char *argv[]) {
     printf("argv[%d] = %s\n", i, argv[i]);
   }
   assert(!argv[argc]);
-  traverse_directory(argv[0]);
+  traverse_directory(argv[1]);
   return 0;
 }
