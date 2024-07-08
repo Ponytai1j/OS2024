@@ -9,7 +9,7 @@ bool is_num(char c){
 	else {return false;}
 }
 bool is_string_num(char s[]){
-	for (int i = 0;i < strlen(str); i++){
+	for (int i = 0;i < strlen(s); i++){
 		if(!is_num(s[i])){return false;}
 	}
 	return true;
