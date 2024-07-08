@@ -4,11 +4,11 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <stdbool.h>
-void is_num(char c){
+bool is_num(char c){
 	if( c >= '1' && c <= '9'){ return true;}
 	else {return false;}
 }
-void is_string_num(string s){
+bool is_string_num(string s){
 	for (int i = 0;i < strlen(str); i++){
 		if(!is_num(s[i])){return false;}
 	}
