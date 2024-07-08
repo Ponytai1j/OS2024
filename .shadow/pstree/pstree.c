@@ -29,7 +29,11 @@ void traverse_directory(const char *path) {
         }
 
         else {
-            printf("文件: %s\n", fullpath);
+	    if(S_ISDIR(st->st_mode)){
+		printf("目录: %s\n", fullpath);
+	    }else{
+		printf("文件: %s\n", fullpath);
+	    }
         }
     }
 
