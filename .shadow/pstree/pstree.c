@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <string.h>
 void traverse_directory(const char *path) {
     DIR *dir;
     struct dirent *entry;
@@ -21,7 +22,6 @@ void traverse_directory(const char *path) {
         }
 
         snprintf(fullpath, sizeof(fullpath), "%s/%s", path, entry->d_name);
-
         struct stat st;
         if (stat(fullpath, &st) == -1) {
             printf("无法获取文件信息: %s\n", fullpath);
