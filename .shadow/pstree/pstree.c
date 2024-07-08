@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <stdbool.h>
 void is_num(char c){
 	if( c >= '1' && c <= '9'){ return true;}
 	else {return false;}
