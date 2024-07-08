@@ -8,7 +8,7 @@ bool is_num(char c){
 	if( c >= '1' && c <= '9'){ return true;}
 	else {return false;}
 }
-bool is_string_num(string s){
+bool is_string_num(char s[]){
 	for (int i = 0;i < strlen(str); i++){
 		if(!is_num(s[i])){return false;}
 	}
