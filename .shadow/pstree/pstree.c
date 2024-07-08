@@ -28,8 +28,6 @@ void traverse_directory(const char *path) {
             continue;
         }
 
-        if (S_ISDIR(st.st_mode)) {
-            traverse_directory(fullpath);  // 递归遍历子目录
         } else {
             printf("文件: %s\n", fullpath);
         }
