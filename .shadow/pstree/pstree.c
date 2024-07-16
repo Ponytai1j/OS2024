@@ -41,8 +41,21 @@ void traverse_directory(const char *path) {
 
         else {
 	    if(S_ISDIR(st.st_mode)){
-		if(is_string_num(entry->d_name)){
+		if(is_string_num(entry->d_name)){		
 		printf("目录: %s\n", fullpath);
+		// dir_target = opendir(fullpath);
+		// char *file_target = "status";
+		// while((entry = readdir(dir)) != NULL){
+		// 	if(strcmp(entry->d_name, fileName) == 0){
+		// 		char filePath[256];
+		// 		snprintf(filepath, sizeof(filePath), "%s%s", dirPath, fileName);
+		// //
+		// FILE *file = fopen(filePath, "r");
+		// if (file != NULL){
+
+		// 	}
+		// 		}
+		// 	}	
 		}
 	    }
         }
