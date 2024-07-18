@@ -47,46 +47,49 @@ void traverse_directory(const char *path) {
         else {
 	    if(S_ISDIR(st.st_mode)){
 		if(is_string_num(entry->d_name)){		
-		printf("目录: %s\n", fullpath);
-        FILE *file = fopen(fullpath, "r");
-        if(file == NULL){
-            printf("can not open file %s\n", fullpath);
-        }
-        int MAX_LINE_LENGTH = 100;
-
-        char line[MAX_LINE_LENGTH];
-        
-        
-        int pid, ppid;
-
-        while(fgets(line, MAX_LINE_LENGTH, file) != NULL){
-            if (strncmp(line, "Pid:", 4) == 0){
-                sscanf(line + 4,"%d", &pid);
-                childId[processCnt] = pid;
-            }else if (strncmp(line, "PPid:", 5) == 0){
-                sscanf(line + 5, "%d", &ppid);
-                parentId[processCnt] = ppid;
-                processCnt += 1;
+            printf("目录: %s\n", fullpath);
+            FILE *file = fopen(fullpath, "r");
+            if(file == NULL){
+                printf("can not open file %s\n", fullpath);
             }
-        }
-        fclose(file);
+            int MAX_LINE_LENGTH = 100;
 
-        // open each process directory's file 'status' , read pid and ppid
+            char line[MAX_LINE_LENGTH];
+            
+            
+        
+            fclose(file);
+            //open process info file
+            int pid, ppid;
+            char process_file_name[] = "/status";
+            snprintf(fullpath + strlen(fullpath), sizeof(fullpath) - strlen(fullpath), "%s", process_file_name);
+            FILE *process_file = fopen(fullpath, "r");
+            while(fgets(line, MAX_LINE_LENGTH, process_file) != NULL){
+                if (strncmp(line, "Pid:", 4) == 0){
+                    sscanf(line + 4,"%d", &pid);
+                    childId[processCnt] = pid;
+                }else if (strncmp(line, "PPid:", 5) == 0){
+                    sscanf(line + 5, "%d", &ppid);
+                    parentId[processCnt] = ppid;
+                    processCnt += 1;
+                }
+            }
+            // open each process directory's file 'status' , read pid and ppid
 
-		// dir_target = opendir(fullpath);
-		// char *file_target = "status";
-		// while((entry = readdir(dir)) != NULL){
-		// 	if(strcmp(entry->d_name, fileName) == 0){
-		// 		char filePath[256];
-		// 		snprintf(filepath, sizeof(filePath), "%s%s", dirPath, fileName);
-		// //
-		// FILE *file = fopen(filePath, "r");
-		// if (file != NULL){
+            // dir_target = opendir(fullpath);
+            // char *file_target = "status";
+            // while((entry = readdir(dir)) != NULL){
+            // 	if(strcmp(entry->d_name, fileName) == 0){
+            // 		char filePath[256];
+            // 		snprintf(filepath, sizeof(filePath), "%s%s", dirPath, fileName);
+            // //
+            // FILE *file = fopen(filePath, "r");
+            // if (file != NULL){
 
-		// 	}
-		// 		}
-		// 	}	
-		}
+            // 	}
+            // 		}
+            // 	}	
+            }
 	    }
         }
     }
